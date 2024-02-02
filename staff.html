@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block maincontent %}
+
+
+<div class="col-md-9">
+    <div class="container mt-4">
+        
+        <h2>Staff List</h2>
+        
+        <a href="{% url 'add_user' %}" class="btn btn-primary">Add User</a>
+        
+        <div class="card-body">
+            {% if users %}
+            <div class="table-responsive">
+                <table id="example" class="display table dataTable table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Staff Name</th>
+                            <th>Staff Email</th>
+                            <th>Department</th>
+                            <th>Assign Task</th>                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.first_name }} {{ user.last_name }}</td>
+                            <td>{{ user.email }} </td>
+                            <td>{{ user.department.name }}</td>
+                            <td>
+                                <a href="{% url 'add_tasks' user.id %}">
+                                    <button class="btn btn-warning">Assign Task</button>
+                                </a>
+                                                            
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>No users found.</p>
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+  
+
+
+
+
+{% endblock maincontent %}

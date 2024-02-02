@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block maincontent %}
+
+
+<div class="col-md-9">
+    <div class="container mt-4">
+        
+        <h2>Departments List</h2>
+        
+        {% comment %} <a href="{% url 'add_department' %}" class="btn btn-primary">Add Department</a> {% endcomment %}
+        <div class="card">
+            <div class="column">
+                <div class="card">
+                    <div class="card-body">
+                        {% if departments %}
+                        <div class="table-responsive">
+                        <table class="display table dataTable table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for department in departments %}
+                                <tr>
+                                    <td>{{ department.name }}</td>
+                                    <td>
+                                        <a href="#" class="dropdown-item px-2 align-self-center d-flex">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#"
+                                            class="dropdown-item px-2 text-danger align-self-center d-flex">
+                                            <i class="bi bi-trash mr-2 h6 mb-0"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        </div>
+                        {% else %}
+                        <p>No departments found.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <br><br>
+                </div>
+
+                <hr></hr>
+
+                <div class="card">
+                    
+                            <h2>Add Department</h2>
+                            <div class="card-body">
+                                <div class="container mt-4">
+        
+                                    <form method="post" class="mt-4">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+  
+
+
+
+
+{% endblock maincontent %}

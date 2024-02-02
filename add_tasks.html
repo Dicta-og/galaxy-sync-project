@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block maincontent %}
+
+
+<div class="card">
+                    
+    <h2>Add Tasks</h2>
+    <div class="card-body">
+        <div class="container mt-4">
+
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock maincontent %}
